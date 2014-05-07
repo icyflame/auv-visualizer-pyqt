@@ -23,14 +23,6 @@ class Example(QtGui.QWidget):
     
     def __init__(self):
         super(Example, self).__init__()
-
-        # thread.start_new_thread(self.initUI, ())
-
-        # try:
-        #     thread.start_new_thread(self.initUI, (self)) #, ("Thread-1", 2, ) )
-        #     # thread.start_new_thread(self.listener)
-        # except:
-        #     print "Error: unable to start thread"
         self.initUI()
         self.listener()        
         
@@ -57,11 +49,6 @@ class Example(QtGui.QWidget):
 
             self.activeTabs.append(0)
 
-        # self.listwidget = QtGui.QListWidget(self)
-        # self.listwidget2 = QtGui.QListWidget(self)
-        # # self.button1 = QtGui.QPushButton("Change Topic", self)
-        # self.edit1 = QtGui.QLineEdit(self)
-
         for i, j in enumerate(self.listwidget):
 
             pb = self.pb[i]
@@ -75,10 +62,6 @@ class Example(QtGui.QWidget):
         for num, item in enumerate(self.pb):
 
             item.clicked.connect(self.buildOnClickSlots(num))
-
-
-        # self.layout.addWidget(self.edit1)
-        # self.layout.addWidget(self.button1)
 
     def listener(self):       
 
