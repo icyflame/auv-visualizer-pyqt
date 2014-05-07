@@ -1,10 +1,9 @@
-# Multiple Topic listener
-#
-# Add the topics that you want to listen to in the TOPIC_NAME list that is present
-# at the top of this file. Once added, the widgets will be placed horizontally.
-#
-# The placing of the widgets can be changed dynamically depending on the requirements
-# of the user and the number of topics being shown.
+# Dynamic listener
+
+# All the topics will have a single push button associated with them.
+
+# When the push button is pressed, that topic will be shown. When the push button is pressed again
+# then the topic will be hidden.
 
 #!/usr/bin/env python
 
@@ -49,10 +48,16 @@ class Example(QtGui.QWidget):
         # self.connect(self.testButton, QtCore.SIGNAL("released()"), self.test)
 
         self.listwidget = []
+        self.pb = []
+        self.activeTabs = []
 
         for i in TOPIC_NAME:
 
             self.listwidget.append(QtGui.QListWidget(self))
+
+            self.pb.append(QtGui.QPushButton(i, self))
+
+            self.activeTabs.append(0)
 
         # self.listwidget = QtGui.QListWidget(self)
         # self.listwidget2 = QtGui.QListWidget(self)
@@ -61,11 +66,17 @@ class Example(QtGui.QWidget):
 
         for i, j in enumerate(self.listwidget):
 
-            label = QtGui.QLabel(TOPIC_NAME[i], self)
+            pb = self.pb[i]
 
-            self.layout.addWidget(label)
+            self.layout.addWidget(pb)
 
             self.layout.addWidget(j)
+
+            j.hide()
+
+        for num, item in enumerate(self.pb):
+
+            item.clicked.connect(self.buildOnClickSlots(num))
 
 
         # self.layout.addWidget(self.edit1)
@@ -77,15 +88,31 @@ class Example(QtGui.QWidget):
 
         for i, j in enumerate(TOPIC_NAME):
 
-            rospy.Subscriber(TOPIC_NAME[i], String, self.buildCallback(i))        
+            rospy.Subscriber(TOPIC_NAME[i], String, self.buildSubscribeCallback(i))        
 
-    def buildCallback(self, topic_index):
+    def buildSubscribeCallback(self, topic_index):
 
         def callback(data=None):
 
             self.listwidget[topic_index].insertItem(0, str(data.data)) 
 
         return callback
+
+    def buildOnClickSlots(self, button_index):
+
+        def on_click():
+
+            if(self.activeTabs[button_index]):
+
+                self.listwidget[button_index].hide()
+                self.activeTabs[button_index] = 0
+
+            else:
+
+                self.listwidget[button_index].show()
+                self.activeTabs[button_index] = 1
+
+        return on_click
             
 def main():
     
