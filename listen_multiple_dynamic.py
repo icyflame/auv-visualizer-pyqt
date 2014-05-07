@@ -2,8 +2,8 @@
 
 # All the topics will have a single push button associated with them.
 
-# When the push button is pressed, that topic will be shown. When the push button is pressed again
-# then the topic will be hidden.
+# When the push button is pressed, that topic will be shown. When the push button 
+# is pressed again then the topic will be hidden.
 
 #!/usr/bin/env python
 
@@ -17,9 +17,7 @@ import thread
 
 # global variables
 
-TOPIC_NAME = ["chatter", "chatter1", "depth"]
-
-active_topic = 0
+TOPIC_NAME = ["chatter", "chatter1", "depth", "images"]
 
 class Example(QtGui.QWidget):
     
