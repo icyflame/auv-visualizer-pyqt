@@ -6,7 +6,7 @@ from std_msgs.msg import String
 import random
 
 ch = random.choice
-h = range(2, 239, 1)
+h = range(2, 101, 1)
 
 TOPIC_NAME = raw_input("Enter the topic name to publish to :- ")
 
