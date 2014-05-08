@@ -3,6 +3,10 @@
 import rospy
 import time
 from std_msgs.msg import String
+import random
+
+ch = random.choice
+h = range(2, 239, 1)
 
 TOPIC_NAME = raw_input("Enter the topic name to publish to :- ")
 
@@ -12,9 +16,10 @@ def talker():
     r = rospy.Rate(10) # 10hz
     while not rospy.is_shutdown():
         time.sleep(1.1)
-        str = TOPIC_NAME + " hello world %s"%rospy.get_time()
-        rospy.loginfo(str)
-        pub.publish(str)
+        g = ch(h)
+        string = str(g)
+        rospy.loginfo(string)
+        pub.publish(string)
         r.sleep()
 
 if __name__ == '__main__':

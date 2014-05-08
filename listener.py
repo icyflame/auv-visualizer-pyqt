@@ -50,6 +50,7 @@ class Example(QtGui.QWidget):
         # anonymous=True flag means that rospy will choose a unique
         # name for our 'listener' node so that multiple listeners can
         # run simultaenously.
+        
         rospy.init_node('listener', anonymous=True)
         rospy.Subscriber(TOPIC_NAME_1, String, self.callback1)
         rospy.Subscriber(TOPIC_NAME_2, String, self.callback2)

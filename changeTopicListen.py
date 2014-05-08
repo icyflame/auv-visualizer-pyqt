@@ -59,14 +59,43 @@ class Example(QtGui.QWidget):
     def listener(self):       
 
         rospy.init_node('listener', anonymous=True)
-        print self.buildCallback(0)
         rospy.Subscriber(TOPIC_NAME[0], String, self.buildCallback(0))
         rospy.Subscriber(TOPIC_NAME[1], String, self.buildCallback(1))
         # ros.spin()
 
         # spin() simply keeps python from exiting until this node is stopped
 
-    def buildCallback(self, topic_index):
+    def on_click(self):
+
+        # topic = self.edit1.text()
+
+        # # new_topic = topic.toUtf8().constData()
+
+        # new_topic = str(topic)
+
+        # # print new_topic
+        # # print type(new_topic)
+        # # print type(topic)
+
+        # # self.listwidget.addItem(new_topic)
+
+        # global TOPIC_NAME
+
+        # TOPIC_NAME = new_topic
+        # self.listwidget.clear()
+        # rospy.Subscriber(TOPIC_NAME, String, self.callback)
+
+        # query = "Do you want to change the topic from " + TOPIC_NAME + " to " + new_topic + " ?"
+
+        # confirm = QtGui.QMessageBox.question(self, 'Message', query,  QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+
+        # if confirm == QtGui.QMessageBox.Yes:
+
+        #     TOPIC_NAME = self.edit1.text()
+        #     self.listwidget.clear()
+        #     self.listener()
+
+    def buildCallack(self, topic_index):
 
         def callback(data=None):
 
