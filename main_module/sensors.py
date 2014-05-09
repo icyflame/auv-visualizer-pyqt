@@ -118,13 +118,13 @@ class Sensors(QtGui.QWidget):
 
         return callback
 
-def main():
+# def main():
     
-    app = QtGui.QApplication(sys.argv)
-    test = Sensors()
-    test.show()
-    app.exec_()
+#     app = QtGui.QApplication(sys.argv)
+#     test = Sensors()
+#     test.show()
+#     app.exec_()
 
 
-if __name__ == '__main__':
-    main()                
+# if __name__ == '__main__':
+#     main()                
